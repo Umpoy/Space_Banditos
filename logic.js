@@ -53,7 +53,7 @@ $(document).ready(function() {
     //
     // });
 
-    var rawSubmit = $("<input>").addClass("tableCreator").attr({
+    var rawSubmit = $("select").addClass("tableCreator").attr({
         type:"button",
         value:"Creat Table"
     });
@@ -67,7 +67,7 @@ $(document).ready(function() {
 
 
 
-    $(".tableCreator").on("click",createTable);
+    $("#play").on("click",createTable);
 
 
     // function createTable()
@@ -102,7 +102,7 @@ $(document).ready(function() {
         {
             for (var j=0; j<tableSize; j++)
             {
-                var segment = $('<div>').addClass("segment").attr({
+                var segment = $('<div>').addClass("square").attr({
                     datarow:i,
                     datacolumn:j}).css({
                     "display":"inline-block",
