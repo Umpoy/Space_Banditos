@@ -26,13 +26,43 @@ body {
 }
 
 .morty{
- 	background-image: : url(https://vignette.wikia.nocookie.net/rickandmorty/images/c/ce/MortyTransparent.png/revision/latest/scale-to-width-down/1000?cb=20160909031949);
+ 	background-image: url(https://vignette.wikia.nocookie.net/rickandmorty/images/c/ce/MortyTransparent.png/revision/latest/scale-to-width-down/1000?cb=20160909031949);
  	background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
  	opacity: 1;
  	max-height: 100%;
  	max-width: 100%;
+}
+
+.rick{
+    background-image: url(https://vignette.wikia.nocookie.net/rickandmorty/images/d/dd/Rick.png/revision/latest?cb=20131230003659);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 1;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.mrM{
+    background-image: url(http://img07.deviantart.net/6122/i/2014/051/5/c/meeseeks_by_michaelogicalm-d77a0fl.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 1;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.mrP{
+    background-image: url(https://vignette.wikia.nocookie.net/rickandmorty/images/3/37/Mr_poopy_butthole.png/revision/latest?cb=20150819161234);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 1;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 /* The Modal (background) */
