@@ -10,7 +10,7 @@ function makeBoard(){
     $('.container').css('height', tableSize*100).css('width', tableSize*100);
 	for(var i = 0; i < tableSize; i++){
 		for(var j = 0; j < tableSize; j++){
-			var segment = $('<div>').addClass("square").attr({
+    		var segment = $('<div>').addClass("square").attr({
     			datarow:i,
     			datacolumn:j}).css({
     			"width":segmentSize,
@@ -23,22 +23,21 @@ function makeBoard(){
     //$(".square").on("click", checkGameOver);
 }
 
-function printInSegment()
-	{
-		console.log('zxc');
-		if (counter % 2 === 0) {
-			$(this).addClass('morty');
-			// console.log('X');
-			//$(this).text('X');
-		} else {
-			$(this).addClass('rick');
-			// //console.log('O');
-			//$(this).text('O');
-		}
+function printInSegment() {
+	if($(this).hasClass('morty') || $(this).hasClass('rick')){
+		return;
+	}
+	console.log('zxc');
+	if (counter % 2 === 0) {
+		$(this).addClass('morty');
 		counter++;
+	} else {
+		$(this).addClass('rick');
+		counter++;
+		}
 	}
 
-        function checkGameOver()
+function checkGameOver()
         {
             console.log("checking winning condition");
             for (var i=0; i<tableSize; i++)
