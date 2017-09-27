@@ -2,24 +2,21 @@ var counter = 0;
 $(document).ready(function(){
     modal.style.display = "block";
     $('#play').on('click', makeBoard);
-
-    $(".square").on("click", printInSegment);
-})
+});
 
 function makeBoard(){
 	tableSize = $('#boardMaker').val();
 	segmentSize = 100/tableSize + "%";
-    $('.container').css('height', tableSize*100).css('width', tableSize*100)
+    $('.container').css('height', tableSize*100).css('width', tableSize*100);
 	for(var i = 0; i < tableSize; i++){
 		for(var j = 0; j < tableSize; j++){
 			var segment = $('<div>').addClass("square").attr({
     			datarow:i,
     			datacolumn:j}).css({
     			"width":segmentSize,
-    			"height":segmentSize,
+    			"height":segmentSize
 			});
     	$('.container').append(segment)
-
 		}
 	}
     $(".square").on("click", printInSegment);
@@ -27,29 +24,20 @@ function makeBoard(){
 
 function printInSegment()
        {
-
            console.log('zxc');
            if (counter % 2 === 0) {
                 $(this).addClass('morty');
 
                // console.log('X');
                //$(this).text('X');
-           }
-
-           else
-           {
+           } else {
                $(this).addClass('morty');
 
                // //console.log('O');
                //$(this).text('O');
            }
-
            counter++;
-
        }
-
-//zxczxczxc
-//zxczxczxz
 
 // // Get the modal
 // var modal = document.getElementById('myModal');
@@ -69,4 +57,3 @@ function printInSegment()
 // span.onclick = function() {
 //     modal.style.display = "none";
 // }
-
