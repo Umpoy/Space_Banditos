@@ -103,8 +103,8 @@ $(document).ready(function() {
             for (var j=0; j<tableSize; j++)
             {
                 var segment = $('<div>').addClass("segment").attr({
-                    datarow:i,
-                    datacolumn:j}).css({
+                    "data-row":i,
+                    "data-column":j}).css({
                     "display":"inline-block",
                     "background-color":"blue",
                     "border":"2px black solid",
@@ -120,6 +120,7 @@ $(document).ready(function() {
         }
 
         $(".segment").on("click",printInSegment);
+        $(".segment").on("click",checkGameOver);
 
         function printInSegment()
         {
@@ -128,7 +129,8 @@ $(document).ready(function() {
                 $(this).text("X");
             }
 
-            else {
+            else
+            {
                 $(this).text("O");
             }
 
@@ -136,17 +138,48 @@ $(document).ready(function() {
 
         }
 
-        checkGameOver();
 
         function checkGameOver()
         {
+            console.log("checking winning condition");
             for (var i=0; i<tableSize; i++)
             {
                 for (var j=0; j<tableSize; j++)
                 {
-                    if ($(pars).value() !== "")
+
+                    if ($(".segment[data-row="+i+"][data-column="+j+"] ").text() !== "")
                     {
-                        if ($("#ij").value() === $("#i"+"j+1").value() !== "")
+                        //checking row win possibilities
+                        if ($(".segment[data-row="+i+"][data-column="+j+"] ").text() === $(".segment[data-row="+i+"][data-column="+(j+1)+"] ").text()
+                        && $(".segment[data-row="+i+"][data-column="+j+"] ").text() === $(".segment[data-row="+i+"][data-column="+(j+2)+"] ").text())
+                        {
+                            console.log("win")
+                        }
+
+                        //checking column win possibilities
+                        if ($(".segment[data-row="+i+"][data-column="+j+"] ").text() === $(".segment[data-row="+(i+1)+"][data-column="+j+"] ").text()
+                            && $(".segment[data-row="+i+"][data-column="+j+"] ").text()===$(".segment[data-row="+(i+2)+"][data-column="+j+"] ").text())
+                        {
+                            console.log("win")
+                        }
+
+                        //checking diagonal win possibilities
+                        if ($(".segment[data-row="+i+"][data-column="+j+"] ").text() === $(".segment[data-row="+(i+1)+"][data-column="+(j+1)+"] ").text()
+                            && $(".segment[data-row="+i+"][data-column="+j+"] ").text()===$(".segment[data-row="+(i+2)+"][data-column="+(j+2)+"] ").text())
+                        {
+                            console.log("win")
+                        }
+
+                        //checking diagonal win possibilities
+                        if ($(".segment[data-row="+i+"][data-column="+j+"] ").text() === $(".segment[data-row="+(i+1)+"][data-column="+(j-1)+"] ").text()
+                            && $(".segment[data-row="+i+"][data-column="+j+"] ").text()===$(".segment[data-row="+(i+2)+"][data-column="+(j-2)+"] ").text())
+                        {
+                            console.log("win")
+                        }
+
+
+
+
                     }
                 }
 
