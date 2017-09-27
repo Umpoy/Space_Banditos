@@ -90,6 +90,8 @@ function checkGameOver() {
     }
 }
 
+//zxczxczxc
+
 // // Get the modal
 // var modal = document.getElementById('myModal');
 
