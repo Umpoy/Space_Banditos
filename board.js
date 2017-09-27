@@ -22,6 +22,8 @@ function makeBoard(){
 	}
 }
 
+//zxczxczxc
+
 // // Get the modal
 // var modal = document.getElementById('myModal');
 
