@@ -1,3 +1,7 @@
 div {
-    display: inline-block;
+    /*display: inline-block;*/
+}
+
+.segment {
+    background-size: contain;
 }
