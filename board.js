@@ -1,7 +1,9 @@
+var counter = 0;
 $(document).ready(function(){
     modal.style.display = "block";
     $('#play').on('click', makeBoard);
-    clickHandler();
+
+    $(".square").on("click", printInSegment);
 })
 
 function makeBoard(){
@@ -20,7 +22,31 @@ function makeBoard(){
 
 		}
 	}
+    $(".square").on("click", printInSegment);
 }
+
+function printInSegment()
+       {
+
+           console.log('zxc');
+           if (counter % 2 === 0) {
+                $(this).addClass('morty');
+
+               // console.log('X');
+               //$(this).text('X');
+           }
+
+           else
+           {
+               $(this).addClass('morty');
+
+               // //console.log('O');
+               //$(this).text('O');
+           }
+
+           counter++;
+
+       }
 
 //zxczxczxc
 

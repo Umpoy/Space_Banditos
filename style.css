@@ -11,6 +11,7 @@
     background-color: white;
 	opacity: .7;
 	box-sizing: border-box;
+    background-size: contain;
 }
 
 .container{
@@ -25,10 +26,10 @@ body {
 }
 
 .morty{
- 	background-image: : url(https://vignette.wikia.nocookie.net/rickandmorty/images/c/ce/MortyTransparent.png/revision/latest/scale-to-width-down/1000?cb=20160909031949) no-repeat center center fixed;
+ 	background-image: : url(https://vignette.wikia.nocookie.net/rickandmorty/images/c/ce/MortyTransparent.png/revision/latest/scale-to-width-down/1000?cb=20160909031949);
  	background-size: contain;
     background-repeat: no-repeat;
-    /*background-position: center center;*/
+    background-position: center center;
  	opacity: 1;
  	max-height: 100%;
  	max-width: 100%;
