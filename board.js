@@ -31,7 +31,7 @@ function printInSegment()
                // console.log('X');
                //$(this).text('X');
            } else {
-               $(this).addClass('morty');
+               $(this).addClass('rick');
 
                // //console.log('O');
                //$(this).text('O');
