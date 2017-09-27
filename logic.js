@@ -8,14 +8,14 @@ $(document).ready(function() {
     var sideBar = $("<div>").css({
         "background-color":"lightblue",
         "border": "2px",
-        "height": "90vh",
+        "height": "50vh",
         "width": "20vw",
         "margin-right": "2vw"
     });
 
     var tableContainer = $("<div>").css({
-        "display": "flex",
-        "justify-content": "center"
+        "display": "flex"
+        //"justify-content": "center"
         // "align-items": "center"
 
     });
@@ -25,10 +25,10 @@ $(document).ready(function() {
     {
         "background-color":"yellow",
         "border": "2px",
-        "height": "50vh",
-        "width": "50vw",
-        "justify-content": "center",
-        "align-items": "center"
+        "height": "85vh",
+        "width": "50vw"
+        //"justify-content": "center",
+        //"align-items": "center"
 
     });
 
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
     var rawSubmit = $("<input>").addClass("tableCreator").attr({
         type:"button",
-        value:"Creat Table"
+        value:"Create Table"
     });
 
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
                     "height":segmentSize,
                     "margin":"0",
                     "text-align":"center",
-                    "vertical-align": "bottom"
+                    "vertical-align":"bottom"
                 });
                 $(table).append(segment);
             }
