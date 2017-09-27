@@ -1,3 +1,4 @@
+
 div {
     /*display: inline-block;*/
 }
@@ -5,3 +6,80 @@ div {
 .segment {
     background-size: contain;
 }
+
+.square {
+/*	width: 30%;*/
+	border: 1px solid teal;
+	padding-bottom: 30%;
+	float: left;
+/*	margin: 1.66%;*/
+	border-radius: 8px;
+/*	transition: background 0.6s;
+	-webkit-transition: background 0.6s;
+	-moz-transition: background 0.6s;*/
+	/*background-color: white;*/
+	opacity: .7;
+    background-size: contain;
+}
+
+.container{
+	margin: 25vh auto;
+	max-width: 700px;
+	max-height: 700px;
+}
+
+body {
+	background: url(https://i.imgur.com/B31Uwkm.png) no-repeat center center fixed;
+	background-size: cover;
+}
+
+.morty{
+ 	background-image: url(https://vignette.wikia.nocookie.net/rickandmorty/images/c/ce/MortyTransparent.png/revision/latest/scale-to-width-down/1000?cb=20160909031949);
+ 	/*background-size: 100% 100%;*/
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+ 	opacity: 1;
+ 	max-height: 100%;
+ 	max-width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    text-align: center;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
