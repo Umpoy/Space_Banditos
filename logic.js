@@ -146,7 +146,9 @@ $(document).ready(function() {
                 {
                     if ($(pars).value() !== "")
                     {
-                        if ($("#ij").value() === $("#i"+"j+1").value() !== "")
+                        if ($("#ij").value() === $("#i"+"j+1").value() !== ""){
+
+                        }
                     }
                 }
 
