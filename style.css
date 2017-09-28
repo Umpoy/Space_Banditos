@@ -27,6 +27,21 @@ body {
 	background-size: cover;
 }
 
+.playerTurn{
+    border: 1px solid red;
+    float: left;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+}
+
+
+
+
+
+
+
+
 .morty{
  	background-image: url(https://vignette.wikia.nocookie.net/rickandmorty/images/c/ce/MortyTransparent.png/revision/latest/scale-to-width-down/1000?cb=20160909031949);
  	background-size: contain;

@@ -56,35 +56,34 @@ function makeBoard(){
 
 
 function printInSegment() {
-    var amountOfPlayers = $('#playerNumbers')
+    var amountOfPlayers = $('#playerNumbers').val();
 	if($(this).hasClass('morty') || $(this).hasClass('rick')){
 		return;
 	}
 
 	console.log('zxc');
-	if (counter % amountOfPlayers === amountOfPlayers -1) {
+	if (counter % amountOfPlayers === 0) {
         var sound = new Audio('http://peal.io/download/uv0rk');
         sound.play();
         $(this).addClass('morty');
         counter++;
-	} else if (counter % amountOfPlayers === amountOfPlayers-1){
-        var sound = new Audio('http://peal.io/download/et39v');
+	} else if (counter % amountOfPlayers === 1){
+                var sound = new Audio('http://peal.io/download/fijtn');
         sound.play();
-        $(this).addClass('mrM');
+        $(this).addClass('rick');
         counter++;
-    } else if(counter % amountOfPlayers === amountOfPlayers-1){
+
+    } else if(counter % amountOfPlayers === 2){
         var sound = new Audio('http://peal.io/download/et39v');
         sound.play();
         $(this).addClass('mrP');
         counter++;
     }
-
     else {
-        var sound = new Audio('http://peal.io/download/fijtn');
+        var sound = new Audio('http://peal.io/download/et39v');
         sound.play();
-		$(this).addClass('rick');
-		counter++;
-        
+        $(this).addClass('mrM');
+        counter++;
 		}
 	}
 
@@ -158,10 +157,9 @@ function checkGameOver() {
     }
 }
 
-// function Player(){
-//     $('.character').on('click', function(){
-//         var test = $('.character').hasClass();
-//     })
-// }
+function Player(){
+    this.name = $('#nameInput').val
+    this.playerNum = $('')
+}
 
 
