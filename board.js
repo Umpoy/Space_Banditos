@@ -4,6 +4,11 @@ var modal = null;
 var amountOfPlayers = null;
 $(document).ready(function(){
     $('#play').on('click', makeBoard);
+    modalMaker();
+    playerTurn();
+});
+
+function modalMaker(){
     // Get the modal
     modal = document.getElementById('myModal');
 
@@ -27,8 +32,7 @@ $(document).ready(function(){
 
     modal.style.display = "block";
 
-    playerTurn();
-});
+}
 
 function makeBoard(){
     setTimeout(function(){
@@ -44,7 +48,6 @@ function makeBoard(){
 	for(var i = 0; i < tableSize; i++){
 		board[i] = new Array(tableSize);
 		for(var j = 0; j < tableSize; j++){
-
     		board[i][j] = $('<div>').addClass("square").attr({
     			datarow:i,
     			datacolumn:j}).css({
@@ -104,7 +107,7 @@ function checkGameOver() {
             if (i <= 4 && j <= 4) {
                     //checking row win possibilities
                     if (j <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i][j + 1].css("background-image") && board[i][j].css("background-image") === board[i][j + 2].css("background-image")) {
-                        modalPopUp();
+                        modalVictory();
                         console.log("win");
                         $(".square").off("click", checkGameOver);
                         $(".square").off("click", printInSegment);
@@ -113,7 +116,7 @@ function checkGameOver() {
 
                     //checking column win possibilities
                     if (i <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i + 1][j].css("background-image") && board[i][j].css("background-image") === board[i + 2][j].css("background-image")) {
-                        modalPopUp();
+                        modalVictory();
                         console.log("win");
                         $(".square").off("click", checkGameOver);
                         $(".square").off("click", printInSegment);
@@ -122,7 +125,7 @@ function checkGameOver() {
 
                     //checking \ diagonal win possibilities
                     if (i <= tableSize-3 && j <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j + 2].css("background-image")) {
-                        modalPopUp();
+                        modalVictory();
                         console.log("win");
                         $(".square").off("click", checkGameOver);
                         $(".square").off("click", printInSegment);  
@@ -131,7 +134,7 @@ function checkGameOver() {
 
                     //checking / diagonal win possibilities
                     if (i <= tableSize-3 && j <= tableSize-3 && board[i][j + 2].css("background-image") !== "none" && board[i][j + 2].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j + 2].css("background-image") === board[i + 2][j].css("background-image")) {
-                        modalPopUp();
+                        modalVictory();
                         console.log("win");
                         $(".square").off("click", checkGameOver);
                         $(".square").off("click", printInSegment);
@@ -142,10 +145,37 @@ function checkGameOver() {
     }
 }
 
-function modalPopUp(){
-    $('.container').html("");
-    modal.style.display = "block";
+function modalVictory(){
+     // Get the modal
+    var winModal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function() {
+        winModal.style.display = "block";
+        var sound = new Audio('http://peal.io/download/wn5l3');
+        sound.play('');
+    }
+
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        winModal.style.display = "none";
+    }
+    }
+
+    winModal.style.display = "block";
+
 }
+
+// function modalPopUp(){
+//     $('.container').html("");
+//     modal.style.display = "block";
+// }
 
 function playerTurn(){
     if(counter % amountOfPlayers === 0){
