@@ -5,10 +5,14 @@
 	opacity: .7;
 	box-sizing: border-box;
     background-size: contain;
+    transition: 1s; /* test */
+    transform-style: preserve-3d;
 }
 
 .container{
 	margin: 25vh auto;
+    height: 700px;
+    width: 700px;
 }
 
 body {
@@ -21,9 +25,12 @@ body {
  	background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    background-color: ;
  	opacity: 1;
  	max-height: 100%;
  	max-width: 100%;
+    transform: rotateY(1080deg);
+    opacity: .7;
 }
 
 .rick{
@@ -34,6 +41,8 @@ body {
     opacity: 1;
     max-height: 100%;
     max-width: 100%;
+    transform: rotateY(900deg);
+    opacity: .7;
 }
 
 .mrM{
@@ -44,6 +53,8 @@ body {
     opacity: 1;
     max-height: 100%;
     max-width: 100%;
+    transform: rotateY(360deg);
+    opacity: .7;
 }
 
 .mrP{
@@ -54,6 +65,8 @@ body {
     opacity: 1;
     max-height: 100%;
     max-width: 100%;
+    transform: rotateY(360deg);
+    opacity: .7;
 }
 
 /* The Modal (background) */

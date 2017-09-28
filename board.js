@@ -7,7 +7,7 @@ $(document).ready(function(){
 function makeBoard(){
 	tableSize = $('#boardMaker').val();
 	segmentSize = 100/tableSize + "%";
-    $('.container').css('height', tableSize*100).css('width', tableSize*100);
+    // $('.container').css('height', tableSize*100).css('width', tableSize*100);
 	for(var i = 0; i < tableSize; i++){
 		for(var j = 0; j < tableSize; j++){
     		var segment = $('<div>').addClass("square").attr({
@@ -25,10 +25,8 @@ function makeBoard(){
 function printInSegment()
        {    
             if($(this).hasClass('morty') || $(this).hasClass('rick')){
-
                 return
             }
-           console.log('zxc');
            if (counter % 2 === 0) {
                 $(this).addClass('morty');
                 counter++;
