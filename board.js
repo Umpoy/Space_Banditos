@@ -46,34 +46,64 @@ function checkGameOver() {
         for (var j = 0; j < tableSize; j++) {
 
             if (i + 3 <= 3 && j + 3 <= 3) {
-                if (board[i][j].css("background-image") !== '') {
-                    //checking row win possibilities
-                    if (board[i][j].css("background-image") === board[i][j + 1].css("background-image") && board[i][j].css("background-image") === board[i][j + 2].css("background-image")) {
+                if (board[i][j].css("background-image") !== "none") {
+                    //checking first row win possibilities
+                    if (board[i][j][0].classList[1] !== undefined && board[i][j][0].classList[1] === board[i][j + 1][0].classList[1] && board[i][j][0].classList[1] === board[i][j + 2][0].classList[1]) {
                         console.log("win");
                         return true;
                     }
 
-                    //checking column win possibilities
-                    if (board[i][j].css("background-image") === board[i + 1][j].css("background-image") && board[i][j].css("background-image") === board[i + 2][j].css("background-image")) {
+                    //checking second row win possibilities
+                    if (board[i + 1][j][0].classList[1] !== undefined && board[i + 1][j][0].classList[1] === board[i + 1][j + 1][0].classList[1] && board[i + 1][j][0].classList[1] === board[i + 1][j + 2][0].classList[1]) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking third row win possibilities
+                    if (board[i + 2][j][0].classList[1] !== undefined && board[i + 2][j][0].classList[1] === board[i + 2][j + 1][0].classList[1] && board[i + 2][j][0].classList[1] === board[i + 2][j + 2][0].classList[1]) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking first column win possibilities
+                    if (board[i][j][0].classList[1] !== undefined && board[i][j][0].classList[1] === board[i + 1][j][0].classList[1] && board[i][j][0].classList[1] === board[i + 2][j][0].classList[1]) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking second column win possibilities
+                    if (board[i][j + 1][0].classList[1] !== undefined && board[i][j + 1][0].classList[1] === board[i + 1][j + 1][0].classList[1] && board[i][j + 1][0].classList[1] === board[i + 2][j + 1][0].classList[1]) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking third column win possibilities
+                    if (board[i][j + 2][0].classList[1] !== undefined && board[i][j + 2][0].classList[1] === board[i + 1][j + 2][0].classList[1] && board[i][j + 2][0].classList[1] === board[i + 2][j + 2][0].classList[1]) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking \ diagonal win possibilities
+                    if (board[i][j][0].classList[1] !== undefined && board[i][j][0].classList[1] === board[i + 1][j + 1][0].classList[1] && board[i][j][0].classList[1] === board[i + 2][j + 2][0].classList[1]) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking / diagonal win possibilities
+                    if (board[i][j + 2][0].classList[1] !== undefined && board[i][j + 2][0].classList[1] === board[i + 1][j + 1][0].classList[1] && board[i][j + 2][0].classList[1] === board[i + 2][j][0].classList[1]) {
                         console.log("win");
                         return true;
                     }
 
                     //checking diagonal win possibilities
-                    if (board[i][j].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j + 2].css("background-image")) {
-                        console.log("win");
-                        return true;
-                    }
-
-                    //checking diagonal win possibilities
-                    if(j-2>=0)
-                    {
-                        if (board[i][j].css("background-image") === board[i + 1][j - 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j - 2].css("background-image"))
-                        {
-                            console.log("win");
-                            return true;
-                        }
-                    }
+                    // if(j-2>=0)
+                    // {
+                    //     if (board[i][j].css("background-image") === board[i + 1][j - 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j - 2].css("background-image"))
+                    //     {
+                    //         console.log("win");
+                    //         return true;
+                    //     }
+                    // }
                 }
             }
         }
