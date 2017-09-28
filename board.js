@@ -30,7 +30,7 @@ function printInSegment() {
 	if($(this).hasClass('morty') || $(this).hasClass('rick')){
 		return;
 	}
-	console.log('zxc');
+	//console.log('zxc');
 	if (counter % 2 === 0) {
 		$(this).addClass('morty');
 		counter++;
@@ -41,70 +41,41 @@ function printInSegment() {
 	}
 
 function checkGameOver() {
-    console.log("checking winning condition");
+    //console.log("checking winning condition");
     for (var i = 0; i < tableSize; i++) {
         for (var j = 0; j < tableSize; j++) {
-
-            if (i + 3 <= 3 && j + 3 <= 3) {
-                if (board[i][j].css("background-image") !== "none") {
-                    //checking first row win possibilities
-                    if (board[i][j][0].classList[1] !== undefined && board[i][j][0].classList[1] === board[i][j + 1][0].classList[1] && board[i][j][0].classList[1] === board[i][j + 2][0].classList[1]) {
+            if (i <= 4 && j <= 4) {
+                    //checking row win possibilities
+                    if (j <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i][j + 1].css("background-image") && board[i][j].css("background-image") === board[i][j + 2].css("background-image")) {
                         console.log("win");
-                        return true;
+                        $(".square").off("click", checkGameOver);
+                        $(".square").off("click", printInSegment);
+                        return;
                     }
 
-                    //checking second row win possibilities
-                    if (board[i + 1][j][0].classList[1] !== undefined && board[i + 1][j][0].classList[1] === board[i + 1][j + 1][0].classList[1] && board[i + 1][j][0].classList[1] === board[i + 1][j + 2][0].classList[1]) {
+                    //checking column win possibilities
+                    if (i <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i + 1][j].css("background-image") && board[i][j].css("background-image") === board[i + 2][j].css("background-image")) {
                         console.log("win");
-                        return true;
-                    }
-
-                    //checking third row win possibilities
-                    if (board[i + 2][j][0].classList[1] !== undefined && board[i + 2][j][0].classList[1] === board[i + 2][j + 1][0].classList[1] && board[i + 2][j][0].classList[1] === board[i + 2][j + 2][0].classList[1]) {
-                        console.log("win");
-                        return true;
-                    }
-
-                    //checking first column win possibilities
-                    if (board[i][j][0].classList[1] !== undefined && board[i][j][0].classList[1] === board[i + 1][j][0].classList[1] && board[i][j][0].classList[1] === board[i + 2][j][0].classList[1]) {
-                        console.log("win");
-                        return true;
-                    }
-
-                    //checking second column win possibilities
-                    if (board[i][j + 1][0].classList[1] !== undefined && board[i][j + 1][0].classList[1] === board[i + 1][j + 1][0].classList[1] && board[i][j + 1][0].classList[1] === board[i + 2][j + 1][0].classList[1]) {
-                        console.log("win");
-                        return true;
-                    }
-
-                    //checking third column win possibilities
-                    if (board[i][j + 2][0].classList[1] !== undefined && board[i][j + 2][0].classList[1] === board[i + 1][j + 2][0].classList[1] && board[i][j + 2][0].classList[1] === board[i + 2][j + 2][0].classList[1]) {
-                        console.log("win");
-                        return true;
+                        $(".square").off("click", checkGameOver);
+                        $(".square").off("click", printInSegment);
+                        return;
                     }
 
                     //checking \ diagonal win possibilities
-                    if (board[i][j][0].classList[1] !== undefined && board[i][j][0].classList[1] === board[i + 1][j + 1][0].classList[1] && board[i][j][0].classList[1] === board[i + 2][j + 2][0].classList[1]) {
+                    if (i <= tableSize-3 && j <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j + 2].css("background-image")) {
                         console.log("win");
-                        return true;
+                        $(".square").off("click", checkGameOver);
+                        $(".square").off("click", printInSegment);
+                        return;
                     }
 
                     //checking / diagonal win possibilities
-                    if (board[i][j + 2][0].classList[1] !== undefined && board[i][j + 2][0].classList[1] === board[i + 1][j + 1][0].classList[1] && board[i][j + 2][0].classList[1] === board[i + 2][j][0].classList[1]) {
+                    if (i <= tableSize-3 && j <= tableSize-3 && board[i][j + 2].css("background-image") !== "none" && board[i][j + 2].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j + 2].css("background-image") === board[i + 2][j].css("background-image")) {
                         console.log("win");
-                        return true;
+                        $(".square").off("click", checkGameOver);
+                        $(".square").off("click", printInSegment);
+                        return;
                     }
-
-                    //checking diagonal win possibilities
-                    // if(j-2>=0)
-                    // {
-                    //     if (board[i][j].css("background-image") === board[i + 1][j - 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j - 2].css("background-image"))
-                    //     {
-                    //         console.log("win");
-                    //         return true;
-                    //     }
-                    // }
-                }
             }
         }
     }
