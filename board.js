@@ -1,4 +1,5 @@
 var counter = 0;
+var board = new Array();
 $(document).ready(function(){
     modal.style.display = "block";
     $('#play').on('click', makeBoard);
@@ -9,18 +10,20 @@ function makeBoard(){
 	segmentSize = 100/tableSize + "%";
     $('.container').css('height', tableSize*100).css('width', tableSize*100);
 	for(var i = 0; i < tableSize; i++){
+		board[i] = new Array(tableSize);
 		for(var j = 0; j < tableSize; j++){
-    		var segment = $('<div>').addClass("square").attr({
+
+    		board[i][j] = $('<div>').addClass("square").attr({
     			datarow:i,
     			datacolumn:j}).css({
     			"width":segmentSize,
     			"height":segmentSize
 			});
-    	$('.container').append(segment)
+    	$('.container').append(board[i][j]);
 		}
 	}
     $(".square").on("click", printInSegment);
-    //$(".square").on("click", checkGameOver);
+    $(".square").on("click", checkGameOver);
 }
 
 function printInSegment() {
@@ -37,53 +40,45 @@ function printInSegment() {
 		}
 	}
 
-function checkGameOver()
-        {
-            console.log("checking winning condition");
-            for (var i=0; i<tableSize; i++)
-            {
-                for (var j=0; j<tableSize; j++)
-                {
+function checkGameOver() {
+    console.log("checking winning condition");
+    for (var i = 0; i < tableSize; i++) {
+        for (var j = 0; j < tableSize; j++) {
 
-                    if ($(".square[data-row="+i+"][data-column="+j+"] ").text() !== "")
+            if (i + 3 <= 3 && j + 3 <= 3) {
+                if (board[i][j].css("background-image") !== '') {
+                    //checking row win possibilities
+                    if (board[i][j].css("background-image") === board[i][j + 1].css("background-image") && board[i][j].css("background-image") === board[i][j + 2].css("background-image")) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking column win possibilities
+                    if (board[i][j].css("background-image") === board[i + 1][j].css("background-image") && board[i][j].css("background-image") === board[i + 2][j].css("background-image")) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking diagonal win possibilities
+                    if (board[i][j].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j + 2].css("background-image")) {
+                        console.log("win");
+                        return true;
+                    }
+
+                    //checking diagonal win possibilities
+                    if(j-2>=0)
                     {
-
-                        if ($("#ij").text() === $("#i"+"j+1").text() !== ""){
-
-                        }
-
-                        //checking row win possibilities
-                        if ($(".square[data-row="+i+"][data-column="+j+"] ").text() === $(".square[data-row="+i+"][data-column="+(j+1)+"] ").text()
-                        && $(".square[data-row="+i+"][data-column="+j+"] ").text() === $(".square[data-row="+i+"][data-column="+(j+2)+"] ").text())
+                        if (board[i][j].css("background-image") === board[i + 1][j - 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j - 2].css("background-image"))
                         {
-                            console.log("win")
+                            console.log("win");
+                            return true;
                         }
-
-                        //checking column win possibilities
-                        if ($(".square[data-row="+i+"][data-column="+j+"] ").text() === $(".square[data-row="+(i+1)+"][data-column="+j+"] ").text()
-                            && $(".square[data-row="+i+"][data-column="+j+"] ").text()===$(".square[data-row="+(i+2)+"][data-column="+j+"] ").text())
-                        {
-                            console.log("win")
-                        }
-
-                        //checking diagonal win possibilities
-                        if ($(".square[data-row="+i+"][data-column="+j+"] ").text() === $(".square[data-row="+(i+1)+"][data-column="+(j+1)+"] ").text()
-                            && $(".square[data-row="+i+"][data-column="+j+"] ").text()===$(".square[data-row="+(i+2)+"][data-column="+(j+2)+"] ").text())
-                        {
-                            console.log("win")
-                        }
-
-                        //checking diagonal win possibilities
-                        if ($(".square[data-row="+i+"][data-column="+j+"] ").text() === $(".square[data-row="+(i+1)+"][data-column="+(j-1)+"] ").text()
-                            && $(".square[data-row="+i+"][data-column="+j+"] ").text()===$(".square[data-row="+(i+2)+"][data-column="+(j-2)+"] ").text())
-                        {
-                            console.log("win")
-                        }
-
                     }
                 }
             }
         }
+    }
+}
 
 // // Get the modal
 // var modal = document.getElementById('myModal');
