@@ -2,7 +2,6 @@ var counter = 0;
 var board = new Array();
 $(document).ready(function(){
     $('#play').on('click', makeBoard);
-    
 
 
     // Get the modal
@@ -25,12 +24,15 @@ $(document).ready(function(){
     }
 
     modal.style.display = "block";
-
-    // modal();
-
 });
 
 function makeBoard(){
+    $('.container').html("");
+    setTimeout(function(){
+        var sound = new Audio('http://peal.io/download/ztm51');
+        sound.play();
+    }, 0000);
+    
     var inputName;
 	tableSize = $('#boardMaker').val();
 	segmentSize = 100/tableSize + "%";
@@ -54,16 +56,35 @@ function makeBoard(){
 
 
 function printInSegment() {
+    var amountOfPlayers = $('#playerNumbers')
 	if($(this).hasClass('morty') || $(this).hasClass('rick')){
 		return;
 	}
+
 	console.log('zxc');
-	if (counter % 2 === 0) {
-		$(this).addClass('morty');
-		counter++;
-	} else {
+	if (counter % amountOfPlayers === amountOfPlayers -1) {
+        var sound = new Audio('http://peal.io/download/uv0rk');
+        sound.play();
+        $(this).addClass('morty');
+        counter++;
+	} else if (counter % amountOfPlayers === amountOfPlayers-1){
+        var sound = new Audio('http://peal.io/download/et39v');
+        sound.play();
+        $(this).addClass('mrM');
+        counter++;
+    } else if(counter % amountOfPlayers === amountOfPlayers-1){
+        var sound = new Audio('http://peal.io/download/et39v');
+        sound.play();
+        $(this).addClass('mrP');
+        counter++;
+    }
+
+    else {
+        var sound = new Audio('http://peal.io/download/fijtn');
+        sound.play();
 		$(this).addClass('rick');
 		counter++;
+        
 		}
 	}
 
@@ -136,13 +157,11 @@ function checkGameOver() {
         }
     }
 }
-function modal(){
-    $('#myBtn').on('click', function(){
-        modal.style.display = 'block';
-    });
-    $('.close').on('click', function(){
-        modal.style.display = 'none';
-    })
-}
+
+// function Player(){
+//     $('.character').on('click', function(){
+//         var test = $('.character').hasClass();
+//     })
+// }
 
 
