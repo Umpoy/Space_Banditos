@@ -13,7 +13,7 @@
 
 </div>
 
-<div class="playerTurn"></div>
+<div id="playerTurn"></div>
 
 
 
@@ -32,7 +32,12 @@
     <div class="character btn mrP"></div>
     <div class="character btn mrM"></div>
 
-    <input type="text" name="boardMaker" id="boardMaker" placeholder="Inesert Number of Rows">
+    <!-- <input type="text" name="boardMaker" id="boardMaker" placeholder="Inesert Number of Rows"> -->
+    <select id="boardMaker">
+      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="7">7</option>
+    </select>
     <p>Select number of players</p>
     <select id="playerNumbers">
       <option value="1">1</option>

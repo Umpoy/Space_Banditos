@@ -17,9 +17,9 @@
 }
 
 .container{
-	margin: 25vh auto;
-/*    height: 700px;
-    width: 700px;*/
+	margin: 30% auto;
+    height: 500px;
+    width: 500px;
 }
 
 body {
@@ -27,12 +27,14 @@ body {
 	background-size: cover;
 }
 
-.playerTurn{
+#playerTurn{
     border: 1px solid red;
-    float: left;
-    margin: auto;
-    width: 100px;
-    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background-color: white;
 }
 
 
