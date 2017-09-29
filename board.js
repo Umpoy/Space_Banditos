@@ -1,14 +1,22 @@
 var counter = 0;
 var board = new Array();
-var amountOfPlayers = null;
+var playerCharacters = ['morty','rick','mrP','mrM'];
+var amountOfPlayers = 2;
 var player = [];
+
+
 $(document).ready(function(){
     $('#play').on('click', makeBoard);
     modalMaker();
     playerTurn();
-    usernameInput();
+    //usernameInput();
+    addPlayerSelectHandlers();
+    addPlayerRoster();
 });
-
+function addPlayerSelectHandlers(){
+    $("#username").on('keypress',usernameInput);
+    $("#playerNumbers").on('change',changePlayerCount);
+}
 function modalMaker(){
     // Get the modal
     var modal = document.getElementById('myModal');
@@ -139,18 +147,35 @@ function checkGameOver() {
 }
 
 function usernameInput(){
-    var blocker = 1;
-    if(player.length <= 4){
-        $("#username[type='text']").keypress(function(event){
-            if(event.which === 13){
-            blocker++;
-            $('#playerNum').text(blocker)
-            var user = $(this).val(); // "This" = Input value
-            $(this).val(""); // Clears input for next player
-            player.push(user)
-            }
-        });
+    if(event.which === 13 && player.length <= amountOfPlayers){     
+        var user = $(this).val(); // "This" = Input value
+        $(this).val(""); // Clears input for next player
+        player.push(user)
+        $('#playerNum').text(player.length+1);
+    } 
+    if(player.length>=amountOfPlayers){
+        $(".characterSelect").hide();
+        $(".closeButtonContainer").show();
     }
+}
+function changePlayerCount(){
+    amountOfPlayers = $('#playerNumbers').val();
+    addPlayerRoster();
+}
+function addPlayerRoster(){
+    /*
+            <div class="character btn morty"></div>
+        <div class="character btn rick"></div>
+        <div class="character btn mrP"></div>
+        <div class="character btn mrM"></div>
+        */
+        $(".characterRoster").empty();
+        for(var i=0; i<amountOfPlayers; i++){
+            var element = $("<div>",{
+                class: 'character btn '+playerCharacters[i]
+            });
+            $(".characterRoster").append(element);
+        }
 }
 
 function modalVictory(){
