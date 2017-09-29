@@ -38,9 +38,12 @@ function modalMaker(){
     span.onclick = function() {
         modal.style.display = "none";
     }
-
-    modal.style.display = "block";
-
+    //Blocks Modal if there is data in localStorage.gameState
+    if (localStorage.gameState !== undefined){
+        getReload()
+    } else {
+        modal.style.display = "block";
+    }
 }
 
 function makeBoard(){ // Dynamically creates board
@@ -69,6 +72,7 @@ function makeBoard(){ // Dynamically creates board
     playerTurn(); 
     $(".square").on("click", printInSegment);
     $(".square").on("click", checkGameOver);
+    storeBoard(parseInt(tableSize))
 }
 
 
@@ -103,6 +107,57 @@ function printInSegment() {
         playerTurn();
 		}
 	}
+
+function storeBoard() {
+    var classBoard = new Array();
+    for (var i = 0; i < tableSize ; i++){
+        classBoard[i] = [];
+        for( var j = 0; j < tableSize; j++){
+            classBoard[i][j] = null;
+            if(board[i][j].hasClass('morty')){
+                classBoard[i][j] = 'morty';
+            } else if(board[i][j].hasClass('rick')){
+                classBoard[i][j] = 'rick';
+            }
+        }
+    }
+    console.log(classBoard);
+    var storageObject = {
+        boardSize: tableSize,
+        boardState: classBoard,
+    }
+    var jsonStorageObject = JSON.stringify(storageObject);
+    localStorage.gameState = jsonStorageObject;
+}
+function getReload(){
+
+    var jsonStorageObject = JSON.parse(localStorage.gameState);
+    var classBoard = jsonStorageObject.boardState;
+    var tableSize = jsonStorageObject.boardSize;
+
+    segmentSize = 100/tableSize + "%";
+    $('.container').css('height', tableSize*100).css('width', tableSize*100);
+    for(var i = 0; i < tableSize; i++){
+        board[i] = new Array(tableSize);
+        for(var j = 0; j < tableSize; j++){
+            board[i][j] = $('<div>').addClass("square").attr({
+                datarow:i,
+                datacolumn:j}).css({
+                "width":segmentSize,
+                "height":segmentSize,
+            });
+            $('.container').append(board[i][j]);
+        }
+    }
+    $(".square").on("click", printInSegment);
+    for ( var i = 0 ; i < classBoard.length; i++){
+        for ( var j = 0; j < classBoard.length; j++) {
+            if (classBoard[i][j] !== null) {
+                $(board[i][j]).addClass(classBoard[i][j]);
+            }
+        }
+    }
+}
 
 function checkGameOver() {
     //console.log("checking winning condition");
