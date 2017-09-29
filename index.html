@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="board.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+</div>
+
+<div id="playerTurn"></div>
+
+
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Reset Button</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+<!--     <span class="close">&times;</span> -->
+    <div class="characterSelect">
+      <h1>Tic Tac Toe</h1>
+      <div class="characterRoster">
+      </div>
+
+      <!-- <input type="text" name="boardMaker" id="boardMaker" placeholder="Inesert Number of Rows"> -->
+      <div>
+     Select number of players
+      <select id="playerNumbers">
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      </div>
+      <div>
+      Select your board
+      <select id="boardMaker">
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+      </select>
+      </div>
+
+      <div>
+      How many to connect to win
+        <select id="numToWin">
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+        </select>
+      </div>
+      <div>
+        Input Player <span id="playerNum">1</span>'s Name
+        <input type="text"  id="username">
+      </div>
+    </div>
+    <div class="closeButtonContainer">
+      <button class="close" id="play">LETS GET SCHWIFTY</button>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- The  Winning Modal -->
+<div id="winningModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+
+  <h1>Congratulations <span id="usernameDisplay"></span> </h1>
+  <div id="playPic"></div>
+</div>
+</body>
+</html>
