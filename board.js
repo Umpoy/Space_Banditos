@@ -1,31 +1,32 @@
 var counter = 0;
 var board = new Array();
-var modal = null;
 var amountOfPlayers = null;
+var player = [];
 $(document).ready(function(){
     $('#play').on('click', makeBoard);
     modalMaker();
     playerTurn();
+    usernameInput();
 });
 
 function modalMaker(){
     // Get the modal
-    modal = document.getElementById('myModal');
+    var modal = document.getElementById('myModal');
 
     // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
+    // Get the button element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the button, open the modal 
+    // When the user clicks on the  restset button, open the modal 
     btn.onclick = function() {
         modal.style.display = "block";
         var sound = new Audio('http://peal.io/download/wn5l3');
         sound.play('');
     }
 
-    // When the user clicks on <span> (x), close the modal
+    // When the user clicks on "Lets get schwifty", close the modal
     span.onclick = function() {
         modal.style.display = "none";
     }
@@ -34,17 +35,16 @@ function modalMaker(){
 
 }
 
-function makeBoard(){
-    setTimeout(function(){
-    var sound = new Audio('http://peal.io/download/ztm51');
-    sound.play();
-    }, 0000);
-    $('.container').html(""); 
-
-    var inputName;
+function makeBoard(){ // Dynamically creates board
+     // "Show me what you got!!!!"
+     setTimeout(function(){
+        var sound = new Audio('http://peal.io/download/ztm51');
+        sound.play();
+     }, 1)
+        
+    $('.container').html(""); // Clears board for first & next game
 	tableSize = $('#boardMaker').val();
-	segmentSize = 100/tableSize + "%";
-    // $('.container').css('height', tableSize*100).css('width', tableSize*100);
+	segmentSize = 100/tableSize + "%"; // Set squares to 33.33%, 20% , 14.29%
 	for(var i = 0; i < tableSize; i++){
 		board[i] = new Array(tableSize);
 		for(var j = 0; j < tableSize; j++){
@@ -65,38 +65,34 @@ function makeBoard(){
 
 
 function printInSegment() {
-    
-	if($(this).hasClass('morty') || $(this).hasClass('rick')){
+	if($(this).hasClass('morty') || $(this).hasClass('rick')){ // Return to baseline if a character class is clicked
 		return;
 	}
-
-	console.log('zxc');
 	if (counter % amountOfPlayers === 0) {
         var sound = new Audio('http://peal.io/download/uv0rk');
         sound.play();
         $(this).addClass('morty');
         counter++;
-        playerTurn()
+        playerTurn();
 	} else if (counter % amountOfPlayers === 1){
-                var sound = new Audio('http://peal.io/download/fijtn');
+            var sound = new Audio('http://peal.io/download/fijtn');
         sound.play();
         $(this).addClass('rick');
         counter++;
-        playerTurn()
+        playerTurn();
     } else if(counter % amountOfPlayers === 2){
         var sound = new Audio('sounds/mr_poopybutthole.mp3');
         sound.play();
         $(this).addClass('mrP');
         counter++;
-        playerTurn()
+        playerTurn();
     }
     else {
         var sound = new Audio('http://peal.io/download/et39v');
         sound.play();
         $(this).addClass('mrM');
         counter++;
-        playerTurn()
-
+        playerTurn();
 		}
 	}
 
@@ -113,7 +109,6 @@ function checkGameOver() {
                         $(".square").off("click", printInSegment);
                         return;
                     }
-
                     //checking column win possibilities
                     if (i <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i + 1][j].css("background-image") && board[i][j].css("background-image") === board[i + 2][j].css("background-image")) {
                         modalVictory();
@@ -122,7 +117,6 @@ function checkGameOver() {
                         $(".square").off("click", printInSegment);
                         return;
                     }
-
                     //checking \ diagonal win possibilities
                     if (i <= tableSize-3 && j <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j + 2].css("background-image")) {
                         modalVictory();
@@ -131,7 +125,6 @@ function checkGameOver() {
                         $(".square").off("click", printInSegment);  
                         return;
                     }
-
                     //checking / diagonal win possibilities
                     if (i <= tableSize-3 && j <= tableSize-3 && board[i][j + 2].css("background-image") !== "none" && board[i][j + 2].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j + 2].css("background-image") === board[i + 2][j].css("background-image")) {
                         modalVictory();
@@ -145,39 +138,52 @@ function checkGameOver() {
     }
 }
 
-function modalVictory(){
-     // Get the modal
-    var winModal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal 
-    btn.onclick = function() {
-        winModal.style.display = "block";
-        var sound = new Audio('http://peal.io/download/wn5l3');
-        sound.play('');
+function usernameInput(){
+    var blocker = 1;
+    if(player.length <= 4){
+        $("#username[type='text']").keypress(function(event){
+            if(event.which === 13){
+            blocker++;
+            $('#playerNum').text(blocker)
+            var user = $(this).val(); // "This" = Input value
+            $(this).val(""); // Clears input for next player
+            player.push(user)
+            }
+        });
     }
-
-    window.onclick = function(event) {
-    if (event.target == modal) {
-        winModal.style.display = "none";
-    }
-    }
-
-    winModal.style.display = "block";
-
 }
 
-// function modalPopUp(){
-//     $('.container').html("");
-//     modal.style.display = "block";
-// }
+function modalVictory(){
+    var tracker = counter -1; 
+     // Get the modal
+    var winModal = document.getElementById('winningModal');
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    window.onclick = function(event) {
+        if (event.target == winModal) {
+            winModal.style.display = "none";
+        }
+    }
+    var victor = tracker % amountOfPlayers;
 
-function playerTurn(){
+    $('#usernameDisplay').text(player[victor]);
+    if(tracker % amountOfPlayers === 0){
+        $('#playPic').removeClass();
+        $('#playPic').addClass('morty');
+    } else if (tracker % amountOfPlayers === 1){
+        $('#playPic').removeClass();
+        $('#playPic').addClass('rick');
+    } else if (tracker % amountOfPlayers === 2){
+        $('#playPic').removeClass();
+        $('#playPic').addClass('mrP');
+    } else {
+        $('#playPic').removeClass();
+        $('#playPic').addClass('mrM');
+    }
+    winModal.style.display = "block";
+}
+
+function playerTurn(){ //Sets image to identify player's turn
     if(counter % amountOfPlayers === 0){
         $('#playerTurn').removeClass();
         $('#playerTurn').addClass('morty');

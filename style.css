@@ -17,7 +17,7 @@
 }
 
 .container{
-	margin: 30% auto;
+	margin: 10% auto;
     height: 500px;
     width: 500px;
 }
@@ -35,6 +35,11 @@ body {
     width: 200px;
     height: 200px;
     background-color: white;
+}
+
+#playPic{
+    height: 100%;
+    width: 100%;
 }
 
 .morty{
@@ -106,7 +111,7 @@ body {
     margin: 10% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 32%; /* Could be more or less, depending on screen size */
+    width: 45%; /* Could be more or less, depending on screen size */
     text-align: center;
     height: 40vh;
 }

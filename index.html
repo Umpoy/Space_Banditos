@@ -37,7 +37,7 @@
    Select number of players
     <select id="playerNumbers">
       <option value="1">1</option>
-      <option value="2">2</option>
+      <option value="2" selected>2</option>
       <option value="3">3</option>
       <option value="4">4</option>
     </select>
@@ -59,9 +59,15 @@
       <option value="7">7</option>
       </select>
     </div>
- 
     <br>
-    <button class="close" id="play">LETS GET SHWIFTY</button>
+    <div>
+    Input Player <span id="playerNum">1</span>'s Name
+    <input type="text"  id="username">
+    </div>
+
+
+    <br>
+    <button class="close" id="play">LETS GET SCHWIFTY</button>
   </div>
 
 </div>
@@ -74,12 +80,8 @@
   <!-- Modal content -->
   <div class="modal-content">
 
-  <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h1>
+  <h1>Congratulations <span id="usernameDisplay"></span> </h1>
+  <div id="playPic"></div>
 </div>
 </body>
 </html>
