@@ -32,7 +32,7 @@ function modalMaker(){
     // When the user clicks on the  reset button, open the modal
     btn.onclick = function() {
         modal.style.display = "block";
-        var sound = new Audio('http://peal.io/download/wn5l3');
+        var sound = new Audio('sounds/disqualified.wav');
         sound.play('');
         localStorage.clear();
     }
@@ -52,7 +52,7 @@ function modalMaker(){
 function makeBoard(){ // Dynamically creates board
      // "Show me what you got!!!!"
      setTimeout(function(){
-        var sound = new Audio('http://peal.io/download/ztm51');
+        var sound = new Audio('sounds/show_me.wav');
         sound.play();
      }, 1)
         
@@ -90,13 +90,13 @@ function printInSegment(element) {
 		return;
 	}
 	if (counter % amountOfPlayers === 0) {
-        var sound = new Audio('http://peal.io/download/uv0rk');
+        var sound = new Audio('sounds/morty.wav');
         sound.play();
         $(element).addClass('morty');
         counter++;
         playerTurn();
 	} else if (counter % amountOfPlayers === 1){
-            var sound = new Audio('http://peal.io/download/fijtn');
+            var sound = new Audio('sounds/rick.wav');
         sound.play();
         $(element).addClass('rick');
         counter++;
@@ -109,9 +109,9 @@ function printInSegment(element) {
         playerTurn();
     }
     else {
-        var sound = new Audio('http://peal.io/download/et39v');
+        var sound = new Audio('sounds/mr_m.wav');
         sound.play();
-        $(this).addClass('mrM');
+        $(element).addClass('mrM');
         counter++;
         playerTurn();
 		}
