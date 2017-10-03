@@ -35,6 +35,7 @@ function modalMaker(){
         var sound = new Audio('sounds/disqualified.wav');
         sound.play('');
         localStorage.clear();
+        counter = 0;
     }
 
     // When the user clicks on "Lets get schwifty", close the modal
