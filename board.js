@@ -73,7 +73,7 @@ function makeBoard(){ // Dynamically creates board
 		}
 	}
     amountOfPlayers = $('#playerNumbers').val();
-    storeBoard(parseInt(tableSize, segmentSize));
+    storeBoard(parseInt(tableSize));
     playerTurn();
     $(".square").on("click", handleSquareClick);
     // $(".square").on("click", printInSegment);
@@ -83,7 +83,7 @@ function makeBoard(){ // Dynamically creates board
 function handleSquareClick(){
     printInSegment(this);
     checkGameOver();
-    storeBoard();
+    storeBoard(tableSize);
 }
 function printInSegment(element) {
 	if($(element).hasClass('morty') || $(element).hasClass('rick')){ // Return to baseline if a character class is clicked
@@ -117,7 +117,7 @@ function printInSegment(element) {
 		}
 	}
 
-function storeBoard() {
+function storeBoard(tableSize) {
 
     console.log( 'function storeBoard is called' );
     var classBoard = [];
@@ -138,6 +138,7 @@ function storeBoard() {
             var storageObject = {
                 boardSize: tableSize,
                 boardState: classBoard,
+                boardCounter : counter,
             }
             var jsonStorageObject = JSON.stringify(storageObject);
             localStorage.gameState = jsonStorageObject;
@@ -149,7 +150,8 @@ function getReload(){
 
     var jsonStorageObject = JSON.parse(localStorage.gameState);
     var classBoard = jsonStorageObject.boardState;
-    var tableSize = jsonStorageObject.boardSize;
+    tableSize = jsonStorageObject.boardSize;
+    counter = jsonStorageObject.boardCounter;
 
     segmentSize = 100/tableSize + "%";
     $('.container').css('height', tableSize*100).css('width', tableSize*100);
@@ -180,51 +182,99 @@ function handleOffClick(){
     $(".square").off("click", printInSegment);
 }
 function checkGameOver() {
-    //console.log("checking winning condition");
+
     for (var i = 0; i < tableSize; i++) {
         for (var j = 0; j < tableSize; j++) {
-            if (i <= 4 && j <= 4) {
-                    //checking row win possibilities
-                    if (j <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i][j + 1].css("background-image") && board[i][j].css("background-image") === board[i][j + 2].css("background-image")) {
-                        modalVictory();
-                        console.log("win");
-                        handleOffClick();
-                        // $(".square").off("click", checkGameOver);
-                        // $(".square").off("click", printInSegment);
-                        return;
+            x = true;
+            for (var k = 0; k < tableSize; k++) {
+                if (j === 0 && i <= tableSize - 1 && j <= tableSize - 1) {
+
+                    if (board[i][j].css("background-image") !== "none" && board[i][j].css('background-image') === board[i][j + k].css('background-image')) {
+                        x = true;
+                    } else {
+                        x = false;
+                        break;
                     }
-                    //checking column win possibilities
-                    if (i <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i + 1][j].css("background-image") && board[i][j].css("background-image") === board[i + 2][j].css("background-image")) {
+                    if (k === tableSize - 1) {
                         modalVictory();
-                        console.log("win");
                         handleOffClick();
-                        // $(".square").off("click", checkGameOver);
-                        // $(".square").off("click", printInSegment);
-                        return;
+                        console.log('win');
                     }
-                    //checking \ diagonal win possibilities
-                    if (i <= tableSize-3 && j <= tableSize-3 && board[i][j].css("background-image") !== "none" && board[i][j].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j].css("background-image") === board[i + 2][j + 2].css("background-image")) {
-                        modalVictory();
-                        console.log("win");
-                        handleOffClick();
-                        // $(".square").off("click", checkGameOver);
-                        // $(".square").off("click", printInSegment);
-                        return;
-                    }
-                    //checking / diagonal win possibilities
-                    if (i <= tableSize-3 && j <= tableSize-3 && board[i][j + 2].css("background-image") !== "none" && board[i][j + 2].css("background-image") === board[i + 1][j + 1].css("background-image") && board[i][j + 2].css("background-image") === board[i + 2][j].css("background-image")) {
-                        modalVictory();
-                        console.log("win");
-                        handleOffClick();
-                        // $(".square").off("click", checkGameOver);
-                        // $(".square").off("click", printInSegment);
-                        return;
-                    }
+                }
             }
         }
     }
-}
 
+    for (var i = 0; i < tableSize; i++) {
+        for (var j = 0; j < tableSize; j++) {
+            x = true;
+            for (var k = 0; k < tableSize; k++) {
+                if (i === 0 && i <= tableSize - 1 && j <= tableSize - 1) {
+
+                    if (board[i][j].css("background-image") !== "none" && board[i][j].css('background-image') === board[i + k][j].css('background-image')) {
+                        x = true;
+
+                    } else {
+                        x = false;
+                        break;
+                    }
+                    if (k === tableSize - 1) {
+                        modalVictory();
+                        handleOffClick();
+                        console.log('win');
+                    }
+                }
+            }
+        }
+    }
+
+    for (var i = 0; i < tableSize; i++) {
+        for (var j = 0; j < tableSize; j++) {
+            x = true;
+            for (var k = 0; k < tableSize; k++) {
+                if (i === 0 && j === 0 && i <= tableSize - 1 && j <= tableSize - 1) {
+
+                    if (board[i][j].css("background-image") !== "none" && board[i][j].css('background-image') === board[i + k][j + k].css('background-image')) {
+                        x = true;
+
+                    } else {
+                        x = false;
+                        break;
+                    }
+                    if (k === tableSize - 1) {
+                        modalVictory();
+                        handleOffClick();
+                        console.log('win');
+                    }
+                }
+            }
+        }
+    }
+
+    for (var i = 0; i < tableSize; i++) {
+        for (var j = 0; j < tableSize; j++) {
+            x = true;
+            for (var k = 0; k < tableSize; k++) {
+                if (j === 0 && i === tableSize - 1 && j <= tableSize - 1) {
+
+                    if (board[i][j].css("background-image") !== "none" && board[i][j].css('background-image') === board[i - k][j + k].css('background-image')) {
+                        x = true;
+
+                    } else {
+                        x = false;
+                        break;
+                    }
+                    if (k === tableSize - 1) {
+                        modalVictory();
+                        handleOffClick();
+                        console.log('win');
+                    }
+                }
+            }
+        }
+    }
+
+}
 function usernameInput(){
     if(event.which === 13 && player.length <= amountOfPlayers){
         var user = $(this).val(); // "This" = Input value
